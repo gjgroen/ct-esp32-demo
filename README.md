@@ -3,6 +3,9 @@ Dit is een project met de ESP32-microcontroller behorende bij een artikel in Com
 * De aanwezigheid van een Bluetooth-apparaat met status `home` of `not_home`
 * De gemeten temperatuur
 
-In het artikel gebruiken we de MQTT-broker Mosquitto die als add-on voor Home Assistant beschikbaar is.
+In het artikel gebruiken we de MQTT-broker Mosquitto die als add-on voor Home Assistant beschikbaar is. We gebruiken zelf een Xiamoi Mi Band 3 maar elke andere Bluetooth-tag werkt doorgaans ook. Het belangrijkste is dat het MAC-adres een vaste waarde heeft, op een smartphone is dat zelden het geval (om je privacy te beschermen).
+
+# Configuratie
+In (Settings.h) vind je alle instellingen voor het programma. Pas dit aan naar je eigen situatie.
 
 ![Alt text](project.jpg?raw=true "Title")
