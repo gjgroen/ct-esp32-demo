@@ -9,7 +9,9 @@ In het artikel gebruiken we de MQTT-broker Mosquitto die als add-on voor Home As
 In [Settings.h](Settings.h) vind je alle instellingen voor het programma. Pas dit aan naar je eigen situatie.
 
 ## Partitie-indeling
-Het is in veel gevallen nodig de partitie-indeling voor het ESP32-bordje aan te passen, omdat alle bibliotheken anders niet passen! In Arduino ga je hiervoor naar File / Preferences en volg je de link naar preferences.txt door er op te klikken. Sluit Arduino. Blader nu naar packages\esp32\hardware\esp32\1.0.1. Verander in boards.txt voor jouw bordje de waarde bij maximale uploadgrootte. In ons voorbeeld met de Adafruit ESP32 Feather passen we de waarde featheresp32.upload.maximum_size=1310720 aan naar 1638400. Bewerk daarna het bestand default.csv (tip: bewaar het origineel als default.csv.org) uit de map tools/partitions met een teksteditor en verander dit naar het volgende:
+Het is in veel gevallen nodig de partitie-indeling voor het ESP32-bordje aan te passen, omdat alle bibliotheken anders niet passen! In Arduino ga je hiervoor naar File / Preferences en volg je de link naar preferences.txt door er op te klikken. Sluit Arduino. Blader nu naar packages\esp32\hardware\esp32\1.0.1. 
+1. Verander in boards.txt voor jouw bordje de waarde bij maximale uploadgrootte. In ons voorbeeld met de Adafruit ESP32 Feather passen we de waarde featheresp32.upload.maximum_size=1310720 aan naar 1638400. 
+2. Bewerk het bestand default.csv (tip: bewaar het origineel als default.csv.org) uit de map tools/partitions met een teksteditor en verander dit naar het volgende:
 ```
 # Name,   Type, SubType, Offset,  Size, Flags
 nvs,      data, nvs,     0x9000,  0x5000,
