@@ -1,4 +1,8 @@
 # Omschrijving
-Dit is een project met de ESP32-microcontroller behorende bij een artikel in Computer!Totaal. De aanwezigheid van een BLE-apparaat (Bluetooth Low Energy), in dit voorbeeld een Xiaomi Mi Band 3, wordt gedetecteerd. Hierop wordt een LED geschakeld. Verder wordt met een LM35 de temperatuur gemeten. De aanwezigheid van het Bluetooth-apparaat én de gemeten temperatuur worden via MQTT doorgegeven aan een MQTT-broker. Bij het artikel is dat de Mosquitto add-on in Home Assistant.
+Dit is een project met de ESP32-microcontroller behorende bij een artikel in Computer!Totaal. Er wordt een temperatuurmeting gedaan met een analoge LM35 temperatuursensor. Ook wordt de aanwezigheid van een BLE (Bluetooth Low Energy) detecteerd. De volgende gegevens worden doorgegeven aan een MQTT-broker:
+* De aanwezigheid van een Bluetooth-apparaat met status `home` of `not_home`
+* De gemeten temperatuur
+
+In het artikel gebruiken we de MQTT-broker Mosquitto die als add-on voor Home Assistant beschikbaar is.
 
 ![Alt text](project.jpg?raw=true "Title")
