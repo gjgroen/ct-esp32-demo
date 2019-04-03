@@ -15,14 +15,17 @@ static BLEAddress *pServerAddress;
 bool deviceFound = false; // apparaat gevonden?
 int deviceRSSI = 0; // signaalsterkte
 
+// Callback, wordt aangeroepen voor elk gevonden bluetooth-apparaat!
 class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
   void onResult(BLEAdvertisedDevice Device) {
-    // Achterhaal mac-adres van bluetooth-apparaat
+    // Lees het MACc-adres van het Bluetooth-apparaat
     pServerAddress = new BLEAddress(Device.getAddress());
 
-    // Kijk of dit het gevraagde adres is
+    // Controleer of dit MAC-adres overeenkomst met het gezochte MAC-adres in knownAddress
     if (strcmp(pServerAddress->toString().c_str(), knownAddress) == 0) {
+      // Lees de signaalsterkte
       deviceRSSI = Device.getRSSI();
+      // Geef aan dat het apparaat is gevonden
       deviceFound = true;
 
       Device.getScan()->stop();
@@ -98,12 +101,13 @@ void loop() {
   Serial.print("Aantal apparaten gevonden: ");
   Serial.println(foundDevices.getCount());
     
-  // Temperatuur LM35 inlezen en converteren naar char array
+  // Temperatuur LM35 inlezen en eventueel een correctiefactor toepassen als vorm van kalibratie
   double tempC = (analogRead(ANALOG_IN) / 2048.0) * 330;
+  // Temperatuur converteren naar een char-array
   char tempString[8];
   dtostrf(tempC, 2, 1, tempString);
 
-  // Temperatuur publiceren
+  // Temperatuur publiceren in de mqtt-topic.
   Serial.print("Publiceer temperatuur: ");
   Serial.println(tempString);
   client.publish(mqtt_topicTemp, tempString);
